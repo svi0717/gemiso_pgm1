@@ -68,6 +68,7 @@ try
 					, (SELECT (LASTNAME||FIRSTNAME) FROM BC_USER WHERE LOGIN_ID = U.UPDATE_USER) UPDATE_USER_NM
 			FROM	BC_USER U
 			WHERE	U.USE_YN = 'Y'
+			AND     (LASTNAME||FIRSTNAME) LIKE '%$searchkey%'
 			".$sort_q."
 		";
 		
