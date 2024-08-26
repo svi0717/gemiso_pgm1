@@ -1256,7 +1256,11 @@ $user_data = $db->queryRow("
 
 			personalInfo_win.show();
 		}
-
+		function storeReload(list_name, keypress = null){
+			if(keypress > ' ' && keypress.keyCode != 13) return;
+			Ext.getCmp(list_name.ownerCt.ownerCt.id).getStore().reload();
+		}
+		
 		function onKeyUpLicenseSearch(){
 			if(event.keyCode == 13){
 				onLicenseSearch();
