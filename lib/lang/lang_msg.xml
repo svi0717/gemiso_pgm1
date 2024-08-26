@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<items>
+		<msgcode>MSG00001</msgcode>
+		<msgkor>홈으로 이동하시겠습니까?</msgkor>
+		<msgeng>Are you moving to home?</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00002</msgcode>
+		<msgkor>로그아웃 하시겠습니까?</msgkor>
+		<msgeng>Are you sure you want to log out?</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00003</msgcode>
+		<msgkor>사번을 입력하세요</msgkor>
+		<msgeng>Enter User ID</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00004</msgcode>
+		<msgkor>비밀번호을 입력하세요.</msgkor>
+		<msgeng>Enter your password</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00005</msgcode>
+		<msgkor>님 환영합니다</msgkor>
+		<msgeng>Welcome "User Id"</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00006</msgcode>
+		<msgkor>계정으로 로그인 되어있습니다</msgkor>
+		<msgeng>Logged in as "User Id"</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00007</msgcode>
+		<msgkor>검색어를 입력해주세요</msgkor>
+		<msgeng>Search keywords are required.</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00008</msgcode>
+		<msgkor>수정할 프로젝트를 선택해주세요.</msgkor>
+		<msgeng>Please select a project.</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00009</msgcode>
+		<msgkor>삭제할 프로젝트를 선택해주세요.</msgkor>
+		<msgeng>Please select a project.</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00010</msgcode>
+		<msgkor>이미 등록된 라이센스 입니다.</msgkor>
+		<msgeng>It is already registered key.</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00011</msgcode>
+		<msgkor>삭제된 프로젝트의 라이센스입니다.</msgkor>
+		<msgeng>It is key of already removed project.</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00012</msgcode>
+		<msgkor>취소된 라이센스입니다.</msgkor>
+		<msgeng>It is already canceled key.</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00013</msgcode>
+		<msgkor>보류된 라이센스입니다.</msgkor>
+		<msgeng>It is already reserved key.</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00014</msgcode>
+		<msgkor>삭제된 라이센스입니다.</msgkor>
+		<msgeng>It is already removed key.</msgeng>
+	</items>
+	<items>
+		<msgcode>MSG00015</msgcode>
+		<msgkor>비밀번호을 8자리 이상 입력하세요.</msgkor>
+		<msgeng>Enter your password more then 8 characters.</msgeng>
+	</items>
+</root>

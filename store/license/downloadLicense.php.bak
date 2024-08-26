@@ -1,0 +1,133 @@
+<?php
+session_start();
+ function TripleDesEncrypt($buffer,$key,$iv) {
+ 
+	$cipher = mcrypt_module_open(MCRYPT_3DES, '', 'cbc', '');
+	 $buffer.='___EOT';
+	 // get the amount of bytes to pad
+	 $extra = 8 - (strlen($buffer) % 8);
+	 // add the zero padding
+	 if($extra > 0) {
+	 for($i = 0; $i < $extra; $i++) {
+	 $buffer .= '_';
+	 }
+	 }
+	 mcrypt_generic_init($cipher, $key, $iv);
+	 $result = mcrypt_generic($cipher, $buffer);
+	 mcrypt_generic_deinit($cipher);
+	 return base64_encode($result);
+ }
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
+
+$id = trim($_REQUEST['id']);
+$create_date = date('YmdHis');
+
+try{
+
+	$license_cnt_q = "
+		SELECT  (ID)
+		FROM	BC_LICENSE
+		WHERE	ID = ".$id."
+	";
+	$license_cnt = $db->queryOne($license_cnt_q);
+
+	$response = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n<response />");
+	$reulst = $response->addChild('result');
+
+	if($license_cnt > 0){
+		$q = "
+			SELECT	L.ID
+					, L.PROJ_ID
+					, L.LICENSE_TYPE
+					, L.PRODUCT_ID
+					, (SELECT P.PRODUCT_NM FROM BC_PRODUCT P WHERE P.PRODUCT_ID = L.PRODUCT_ID) AS PRODUCT_NM
+					, L.LICENSE_KEY
+					, L.USE_TERM
+					, L.COMPLETE_DATE
+			FROM	BC_LICENSE L
+			WHERE	L.ID = ".$id."
+		";
+		$license_data = $db->queryRow($q);
+
+		$mac_cnt_q = "
+			SELECT	COUNT(ID)
+			FROM	BC_LICENSE_MAC_ADDR
+			WHERE	LICENSE_ID = ".$id."
+		";
+		$mac_cnt = $db->queryOne($mac_cnt_q);
+		
+		$reulst->addAttribute('success', 'true');
+		$reulst->addAttribute('msg', 'ok');
+
+		$data = $response->addChild('data');
+		$system = $data->addChild('system');
+		$mac_address = $system->addChild('mac_address');
+		if($mac_cnt > 0){			
+			$mac_q = "
+				SELECT	M.MAC_ADDR
+				FROM	BC_LICENSE_MAC_ADDR M
+				WHERE	LICENSE_ID = ".$id."
+			";
+			$mac_data = $db->queryAll($mac_q);
+			foreach($mac_data as $mac_item){
+				$mac_address->addChild('Item', $mac_item['mac_addr']);
+			}
+		}
+		
+		$license_type = 1;
+		if($license_data['license_type'] == 'TRIAL'){
+			$license_type = 0;
+		}
+		$data->addChild('license_type', $license_type);
+		$data->addChild('project_id', $license_data['proj_id']);
+		$data->addChild('program_id', $license_data['product_id']);
+		$data->addChild('license', $license_data['license_key']);
+		$data->addChild('license_day', $license_data['use_term']);
+		$data->addChild('start_date', '');
+		$data->addChild('end_date', '');
+	
+		//��ǰ��_���Ⱓ_�ٿ�ε��Ͻ�.xml
+		$filename = $license_data['product_nm']."_".$license_data['use_term']."_".$create_date;
+	}
+	else{
+		$reulst->addAttribute('success', 'false');
+		$reulst->addAttribute('msg', '�������� �ʴ� ���̼����Դϴ�.');
+
+		$filename = $create_date;
+	}
+
+
+	$source = $response->asXml();
+
+	$key="passwordDR0wSS@P6660juht";
+	$iv="password";
+	if (extension_loaded('mcrypt') === true) {
+		//if (is_file($source) === true) {
+			//$source = file_get_contents($source);
+			$encryptedSource=TripleDesEncrypt($source,$key,$iv);
+	}
+	else {
+		return false;
+	}
+
+	$filename = iconv('utf-8','euc-kr', $filename);
+
+	Header("Content-type: text/xml charset=UTF-8"); 
+	header("Content-Disposition: attachment; filename=".$filename.".xml"); 
+	header( "Content-Description: PHP4 Generated Data" ); 
+	header("Content-Transfer-Encoding: binary"); 
+
+	echo $source;
+
+}
+catch(Exception $e)
+{
+	echo print_r("catch!!!!");
+	echo $e->getMessage();
+	//return return_error_code($e->getMessage()); 
+}
+
+// $db->close();
+$db = null;
+?>

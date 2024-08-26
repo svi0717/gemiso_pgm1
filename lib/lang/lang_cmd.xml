@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<menu>
+		<mcode>MN00001</mcode>
+		<hmenu>예</hmenu>
+		<emenu>Yes</emenu>
+		<desc>버튼에 대한 값</desc>
+	</menu>
+	<menu>
+		<mcode>MN00002</mcode>
+		<hmenu>아니오</hmenu>
+		<emenu>No</emenu>
+		<desc>버튼에 대한 값</desc>
+	</menu>
+	<menu>
+		<mcode>MN00003</mcode>
+		<hmenu>확인</hmenu>
+		<emenu>OK</emenu>
+		<desc>버튼에 대한 값</desc>
+	</menu>
+	<menu>
+		<mcode>MN00004</mcode>
+		<hmenu>취소</hmenu>
+		<emenu>Cancel</emenu>
+		<desc>버튼에 대한 값</desc>
+	</menu>
+	<menu>
+		<mcode>MN00005</mcode>
+		<hmenu>중지</hmenu>
+		<emenu>Abort</emenu>
+		<desc>버튼에 대한 값</desc>
+	</menu>
+	<menu>
+		<mcode>MN00006</mcode>
+		<hmenu>재시도</hmenu>
+		<emenu>Retry</emenu>
+		<desc>버튼에 대한 값</desc>
+	</menu>
+	<menu>
+		<mcode>MN00007</mcode>
+		<hmenu>무시</hmenu>
+		<emenu>Ignore</emenu>
+		<desc>버튼에 대한 값</desc>
+	</menu>
+	<menu>
+		<mcode>MN00008</mcode>
+		<hmenu>전체</hmenu>
+		<emenu>All</emenu>
+		<desc>버튼에 대한 값</desc>
+	</menu>
+	<menu>
+		<mcode>MN00009</mcode>
+		<hmenu>도움말</hmenu>
+		<emenu>Help</emenu>
+		<desc>버튼에 대한 값</desc>
+	</menu>
+	<menu>
+		<mcode>MN00010</mcode>
+		<hmenu>-</hmenu>
+		<emenu>-</emenu>
+		<desc>예약 대기</desc>
+	</menu>
+	<menu>
+		<mcode>MN00011</mcode>
+		<hmenu>성공</hmenu>
+		<emenu>Success</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00012</mcode>
+		<hmenu>실패</hmenu>
+		<emenu>Failure</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00013</mcode>
+		<hmenu>로그아웃</hmenu>
+		<emenu>Log out</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00014</mcode>
+		<hmenu>로그인</hmenu>
+		<emenu>Log In</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00015</mcode>
+		<hmenu>성공</hmenu>
+		<emenu>Succeeded</emenu>
+		<desc>(과거동사)작업관리 체크박스</desc>
+	</menu>
+	<menu>
+		<mcode>MN00016</mcode>
+		<hmenu>실패</hmenu>
+		<emenu>Failed</emenu>
+		<desc>(과거동사)작업관리 체크박스</desc>
+	</menu>
+	<menu>
+		<mcode>MN00017</mcode>
+		<hmenu>-</hmenu>
+		<emenu>-</emenu>
+		<desc>예약 대기</desc>
+	</menu>
+	<menu>
+		<mcode>MN00018</mcode>
+		<hmenu>-</hmenu>
+		<emenu>-</emenu>
+		<desc>예약 대기</desc>
+	</menu>
+	<menu>
+		<mcode>MN00019</mcode>
+		<hmenu>-</hmenu>
+		<emenu>-</emenu>
+		<desc>예약 대기</desc>
+	</menu>
+	<menu>
+		<mcode>MN00020</mcode>
+		<hmenu>-</hmenu>
+		<emenu>-</emenu>
+		<desc>예약 대기</desc>
+	</menu>
+	<menu>
+		<mcode>MN00021</mcode>
+		<hmenu>경고</hmenu>
+		<emenu>Warning</emenu>
+		<desc>메시지 타이틀에 대한 경고(!)</desc>
+	</menu>
+	<menu>
+		<mcode>MN00022</mcode>
+		<hmenu>오류</hmenu>
+		<emenu>Error</emenu>
+		<desc>메시지 타이틀에 대한 에러(X)</desc>
+	</menu>
+	<menu>
+		<mcode>MN00023</mcode>
+		<hmenu>알림</hmenu>
+		<emenu>Information</emenu>
+		<desc>메시지 타이틀에 대한 정보(i)</desc>
+	</menu>
+	<menu>
+		<mcode>MN00024</mcode>
+		<hmenu>확인</hmenu>
+		<emenu>Confirmation</emenu>
+		<desc>메시지 타이틀에 대한 확인(?)</desc>
+	</menu>
+	<menu>
+		<mcode>MN00025</mcode>
+		<hmenu>-</hmenu>
+		<emenu>-</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00026</mcode>
+		<hmenu>프로젝트</hmenu>
+		<emenu>Project</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00027</mcode>
+		<hmenu>정보</hmenu>
+		<emenu>Informaion</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00028</mcode>
+		<hmenu>라이센스</hmenu>
+		<emenu>License</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00029</mcode>
+		<hmenu>새로고침</hmenu>
+		<emenu>Refresh</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00030</mcode>
+		<hmenu>추가</hmenu>
+		<emenu>Add</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00031</mcode>
+		<hmenu>삭제</hmenu>
+		<emenu>Remove</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00032</mcode>
+		<hmenu>초기화</hmenu>
+		<emenu>Initialize</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00033</mcode>
+		<hmenu>오프라인 라이센스 발급</hmenu>
+		<emenu>Issue offline license</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00034</mcode>
+		<hmenu>텍스트 다운로드</hmenu>
+		<emenu>Download for text</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00035</mcode>
+		<hmenu>수정</hmenu>
+		<emenu>Edit</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00036</mcode>
+		<hmenu>패스워드 초기화</hmenu>
+		<emenu>reset password</emenu>
+		<desc>-</desc>
+	</menu>
+</root>
