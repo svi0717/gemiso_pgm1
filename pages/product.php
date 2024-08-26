@@ -1,15 +1,19 @@
 <?
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
+
 ?>
 (function(){
+
 	var productPanel = {
 		xtype: 'panel',
 		layout: 'fit',
 		items: [{
 			xtype: 'grid',
 			id: 'product_list',
-			tbar: ['구분 : ',{
+			tbar: [_text('MN00038'), // 구분
+			{
 				width: 150,
 				xtype: 'combo',
 				id: 'search_f_product_type',
@@ -43,32 +47,52 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 				listeners: {
 					render: function(self){
 						self.setValue(self.getStore().getAt(0).get('v'));
+					},
+					select: function(self, record, index){
+						// 구분탭 조회 검색 기능 추가 // jsseol 2024-08-21
+						storeReload(self);
 					}
 				}
-			},'회사명 : ',{
+			},_text('MN00041'), // 회사명
+			{
 				width: 200,
 				xtype: 'textfield',
-				id: 'search_f_company_nm'
-			},'제품명 : ',{
+				id: 'search_f_company_nm',
+				enableKeyEvents: true,
+				listeners: {
+					// 회사명 엔터 검색기능 추가 // jsseol 2024-08-21
+					keypress: function(self, e){
+						storeReload(self,e);
+					}
+				}
+			},_text('MN00042'), // 제품명
+			{
 				width: 200,
 				xtype: 'textfield',
-				id: 'search_f_product_nm'
+				id: 'search_f_product_nm',
+				enableKeyEvents: true,
+				listeners: {
+					// 제품명 엔터 검색기능 추가 // jsseol 2024-08-21
+						keypress: function(self, e){
+							storeReload(self,e);		
+						}
+					}
 			},{
-				text: '검색',
+				text: _text('MN00043'), // 검색
 				icon: '/led-icons/magnifier.png',
 				listeners: {
 					click: function(self){
-						Ext.getCmp('product_list').getStore().load();
+						storeReload(self);
 					}
 				}
 			},'-',{
-				text: '등록',
+				text: _text('MN00044'), // 등록
 				icon: '/led-icons/application_add.png',
 				handler: function(btn, e){
 					registProductForm('regist', '');
 				}
 			},'-',{
-				text: '수정',
+				text: _text('MN00035'), // 수정
 				icon: '/led-icons/application_edit.png',
 				handler: function(btn, e){
 					var select_prod = Ext.getCmp('product_list').getSelectionModel().getSelected();
@@ -82,7 +106,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 			}
 			
 			,'-',{
-				text: '삭제',
+				text: _text('MN00031'), // 삭제
 				icon: '/led-icons/application_delete.png',
 				handler: function(btn, e){
 					var select_proj = Ext.getCmp('product_list').getSelectionModel().getSelected();
@@ -91,7 +115,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 						return;
 					}
 					Ext.Msg.show({
-						title: '알림',
+						title: _text('MN00023'), // 알림
 						msg: select_proj.get('product_nm')+' 제품을 삭제하시겠습니까?',
 						buttons: Ext.Msg.OKCANCEL,
 						fn: function(btn){
@@ -130,7 +154,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 					var menu = new Ext.menu.Menu({
 						items: [
 							{
-								text : '수정',
+								text : _text('MN00035'), // 수정
 								icon: '/led-icons/application_edit.png',
 								handler: function(b, e){
 									var sm = self.getSelectionModel();
@@ -154,13 +178,13 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 								}
 							}
 							/*,{
-								text: '삭제',
+								text: _text('MN00031'), // 삭제
 								icon: '/led-icons/application_delete.png',
 								handler: function(b, e){
 									var sm = self.getSelectionModel();
 									if(sm.hasSelection()){
 										Ext.Msg.show({
-											title: '알림',
+											title: _text('MN00023'), // 알림
 											msg: sm.getSelected().get('product_nm')+' 제품을 삭제하시겠습니까?',
 											buttons: Ext.Msg.OKCANCEL,
 											fn: function(btn){
@@ -257,10 +281,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 		var title = '';
 
 		if(flag == 'regist'){
-			title = '등록';
+			title = _text('MN00044'); // 등록
 		}
 		else if(flag == 'update'){
-			title = '수정';
+			title = _text('MN00035'); // 수정
 		}
 		var registProjForm = new Ext.Window({
 			title: '제품 '+title,

@@ -12,7 +12,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 		},
 		items: [{
 			region: 'center',
-			title: '코드유형',
+			title: _text('MN00050'), // 코드유형
 			xtype: 'grid',
 			id: 'codeTypeList',
 			loadMask: true,
@@ -44,21 +44,28 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 			},{
 				xtype: 'textfield',
 				width: 250,
-				id: 'search_v_c'
+				id: 'search_v_c',
+				enableKeyEvents: true,
+				listeners: {
+					// 엔터 검색기능 추가 // jsseol 2024-08-22
+					keypress: function(self, e){
+						storeReload(self,e);
+					}
+				}
 			},{
-				text: '검색',
+				text: _text('MN00043'), // 검색
 				icon: '/led-icons/magnifier.png',
 				handler: function(btn){
-					Ext.getCmp('codeTypeList').getStore().load();
+					storeReload(btn);
 				}
 			},'-',{
-				text: '등록',
+				text: _text('MN00044'), // 등록
 				icon: '/led-icons/application_add.png',
 				handler: function(btn){
 					registCodeType('regist', '');
 				}
 			},'-',{
-				text: '수정',
+				text: _text('MN00035'), // 수정
 				icon: '/led-icons/application_edit.png',
 				handler: function(btn){
 					var selected_codeType = Ext.getCmp('codeTypeList').getSelectionModel().getSelected();
@@ -70,7 +77,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 					registCodeType('update', selected_codeType.get('id'));
 				}
 			},'-',{
-				text: '삭제',
+				text: _text('MN00031'), // 삭제
 				icon: '/led-icons/application_delete.png',
 				handler: function(btn){
 					var selected_codeType = Ext.getCmp('codeTypeList').getSelectionModel().getSelected();
@@ -80,7 +87,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 					}
 
 					Ext.Msg.show({
-						title: '알림',
+						title: _text('MN00023') , // 알림
 						msg: selected_codeType.get('code_nm')+' 코드유형을 삭제하시겠습니까?',
 						buttons: Ext.Msg.OKCANCEL,
 						fn: function(btn){
@@ -111,7 +118,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 
 					var menu = new Ext.menu.Menu({
 						items: [{
-							text : '수정',
+							text : _text('MN00035'), // 수정
 							icon: '/led-icons/application_edit.png',
 							handler: function(b, e){
 								var sm = self.getSelectionModel();
@@ -123,7 +130,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 								}
 							}
 						},{
-							text : '삭제',
+							text : _text('MN00031'), // 삭제
 							icon: '/led-icons/application_delete.png',
 							handler: function(b, e){
 								var sm = self.getSelectionModel();
@@ -210,18 +217,18 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 		},{
 			region: 'south',
 			height: 450,
-			title: '코드',
+			title: _text('MN00051'), // 코드
 			xtype: 'grid',
 			loadMask: true,
 			id: 'codeList',
 			tbar: [{
 				icon: '/led-icons/arrow_refresh.png',
-				text: '새로고침',
+				text: _text('MN00029'), // 새로고침
 				handler: function(btn){
 					Ext.getCmp('codeList').getStore().reload();
 				}
 			},{
-				text: '등록',
+				text: _text('MN00044'), // 등록
 				icon: '/led-icons/application_add.png',
 				handler: function(){
 					var selected_codeType = Ext.getCmp('codeTypeList').getSelectionModel().getSelected();
@@ -232,7 +239,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 					registCode('regist', '', selected_codeType.get('id'));
 				}
 			},'-',{
-				text: '수정',
+				text: _text('MN00035'), // 수정
 				icon: '/led-icons/application_edit.png',
 				handler: function(btn){
 					var selected_codeType = Ext.getCmp('codeTypeList').getSelectionModel().getSelected();
@@ -249,7 +256,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 					registCode('update', selected_code.get('id'), selected_codeType.get('id'));
 				}
 			},'-',{
-				text: '삭제',
+				text: _text('MN00031'), // 삭제
 				icon: '/led-icons/application_delete.png',
 				handler: function(btn){
 					var selected_code = Ext.getCmp('codeList').getSelectionModel().getSelected();
@@ -259,7 +266,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 					}
 
 					Ext.Msg.show({
-						title: '알림',
+						title: _text('MN00023'), // 알림
 						msg: selected_code.get('code_nm')+' 코드를 삭제하시겠습니까?',
 						buttons: Ext.Msg.OKCANCEL,
 						fn: function(btn){
@@ -292,7 +299,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 
 					var menu = new Ext.menu.Menu({
 						items: [{
-							text : '수정',
+							text : _text('MN00035'), // 수정
 							icon: '/led-icons/application_edit.png',
 							handler: function(b, e){
 								var sm = self.getSelectionModel();
@@ -309,7 +316,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 								}
 							}
 						},{
-							text : '삭제',
+							text : _text('MN00031'), // 삭제
 							icon: '/led-icons/application_delete.png',
 							handler: function(b, e){
 								var sm = self.getSelectionModel();
@@ -428,7 +435,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 					requestCodeType(action, code_type_regist_form.getValues());
 				}
 			},{
-				text: '취소',
+				text: _text('MN00004'), // 취소
 				handler: function(btn){
 					btn.ownerCt.ownerCt.close();
 				}
@@ -536,7 +543,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 					requestCode(action, code_regist_form.getValues(), code_type_id);
 				}
 			},{
-				text: '취소',
+				text: _text('MN00004'), // 취소
 				handler: function(btn){
 					btn.ownerCt.ownerCt.close();
 				}

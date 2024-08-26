@@ -2,7 +2,6 @@
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
-
 ?>
 (function(){
 	var productPanel = {
@@ -12,31 +11,36 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 			xtype: 'grid',
 			id: 'user_list',
 			tbar: [
-			/*
-			'사용자 : ',{
+			_text('MN00039'), // 사용자 명
+			{
 				width: 200,
 				xtype: 'textfield',
-				id: 'search_key'
+				id: 'search_key',
+				enableKeyEvents: true,
+				listeners: {
+					// 사용자명 엔터 검색기능 추가 // jsseol 2024-08-22
+					keypress: function(self, e){
+						storeReload(self,e);
+					}
+				}
 			},{
-				text: '검색',
+				text: _text('MN00043'), // 검색
 				icon: '/led-icons/magnifier.png',
 				listeners: {
 					click: function(self){
-						Ext.getCmp('user_list').getStore().load();
+						storeReload(self);
 					}
 				}
 			},'-',
-			*/
+			
 			{
-				//text: _text('MN00030'),
-				text: '<?= _text('MN00030')?>',
+				text: _text('MN00030'), // 추가
 				icon: '/led-icons/application_add.png',
 				handler: function(btn, e){
 					registUser('regist', '');
 				}
 			},'-',{
-				//text: _text('MN00035'),
-				text: '<?= _text('MN00035')?>',
+				text: _text('MN00035'), // 수정
 				icon: '/led-icons/application_edit.png',
 				handler: function(btn, e){
 					var selectRow = Ext.getCmp('user_list').getSelectionModel().getSelected();
@@ -49,8 +53,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 				}
 			}
 			,'-',{
-				//text: _text('MN00031'),
-				text: '<?= _text('MN00031')?>',
+				text: _text('MN00031'), // 삭제
 				icon: '/led-icons/application_delete.png',
 				handler: function(btn, e){
 					var selectRow = Ext.getCmp('user_list').getSelectionModel().getSelected();
@@ -64,14 +67,13 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 			},'-',{
 				icon: '/led-icons/arrow_refresh.png',
 				//text: _text('MN00029'),
-				text: '<?= _text('MN00029')?>',
+				text: _text('MN00029'), // 새로고침
 				handler: function(btn){
-					Ext.getCmp('user_list').getStore().reload();
+					storeReload(btn);
 				}
 			},'-',{
 				icon: '/led-icons/arrow_refresh.png',
-				//text: _text('MN00036'),
-				text: '<?= _text('MN00036')?>',
+				text: _text('MN00036'), // 패스워드 초기화
 				handler: function(btn){
 					var selectRow = Ext.getCmp('user_list').getSelectionModel().getSelected();
 					var name = selectRow.data.lastname + selectRow.data.firstname;
@@ -80,7 +82,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 						return;
 					}
 					Ext.Msg.show({
-						title: '알림',
+						title: _text('MN00023'), // 알림
 						msg: name+' 님의 비밀번호를 gemiso1!로 초기화 하시겠습니까??',
 						buttons: Ext.Msg.OKCANCEL,
 						fn: function(btn){
@@ -148,11 +150,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 						}
 					},
 					beforeload: function(self, opts){
-						//var searchkey = Ext.getCmp('search_key').getValue();
-
+						var searchkey = Ext.get('search_key').getValue();
 						self.baseParams = {
-							action: 'getUserList'
-							//,searchkey: searchkey
+							action: 'getUserList',
+							searchkey: searchkey
 						}
 					},
 					load: function(self, records, opts){
@@ -189,10 +190,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 		var title = '';
 
 		if(action == 'regist'){
-			title = '등록';
+			title = _text('MN00044'); // 등록
 		}
 		else if(action == 'update_in_userManagement'){
-			title = '수정';
+			title = _text('MN00035'); // 수정
 		}
 
 		var registUserForm = new Ext.Window({
@@ -240,7 +241,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 					request(action, values);
 				}
 			},{
-				text: '취소',
+				text: _text('MN00004'), // 취소
 				handler: function(btn){
 					btn.ownerCt.ownerCt.close();
 				}
